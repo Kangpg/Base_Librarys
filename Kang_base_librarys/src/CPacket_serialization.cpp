@@ -24,31 +24,6 @@ namespace My_Library
 			delete[] m_pBuffer;
 	}
 
-	unsigned CPacket_serialization::GetDataUsedSize() const
-	{
-		return m_packet_data_rear - m_packet_data_front;
-	}
-
-	unsigned CPacket_serialization::GetDataUsableSize() const
-	{
-		return m_packet_buffer_size - m_packet_header_size - m_packet_data_rear;
-	}
-
-	unsigned CPacket_serialization::GetHeaderUsedSize() const
-	{
-		return m_packet_header_rear - m_packet_header_front;
-	}
-
-	unsigned CPacket_serialization::GetHeaderUsableSize() const
-	{
-		return m_packet_header_size - m_packet_header_rear;
-	}
-
-	unsigned CPacket_serialization::GetTotalPacketUsageSize() const
-	{
-		return m_packet_total_usage_size;
-	}
-
 	CPacket_serialization& CPacket_serialization::operator=(const CPacket_serialization& source_CPacket)
 	{
 		m_packet_total_usage_size = source_CPacket.m_packet_total_usage_size;

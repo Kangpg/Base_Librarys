@@ -24,7 +24,7 @@ namespace My_Library
 
 		CPacket(unsigned packet_header_size = static_cast<unsigned>(en_config::DEFAULT_HEADER_SIZE),
 			unsigned packet_buffer_size = static_cast<unsigned>(en_config::DEFAULT_PACKET_SIZE));
-		~CPacket() = default;
+		virtual ~CPacket() = default;
 
 	private:
 

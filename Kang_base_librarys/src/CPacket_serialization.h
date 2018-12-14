@@ -23,17 +23,17 @@ namespace My_Library
 		virtual ~CPacket_serialization();
 
 		// 사용하고 있는 데이터 공간
-		unsigned GetDataUsedSize() const;
+		auto GetDataUsedSize() const { return m_packet_data_rear - m_packet_data_front; }
 		// 사용할 수 있는 데이터 공간
-		unsigned GetDataUsableSize() const;
+		auto GetDataUsableSize() const { return m_packet_buffer_size - m_packet_header_size - m_packet_data_rear; }
 		// 사용하고 있는 헤더 공간
-		unsigned GetHeaderUsedSize() const;
+		auto GetHeaderUsedSize() const { return m_packet_header_rear - m_packet_header_front; }
 		// 사용할 수 있는 헤더 공간
-		unsigned GetHeaderUsableSize() const;
+		auto GetHeaderUsableSize() const { return m_packet_header_size - m_packet_header_rear; }
 		// 패킷의 총 사용 공간
-		unsigned GetTotalPacketUsageSize() const;
+		auto GetTotalPacketUsageSize() const { return m_packet_total_usage_size; }
 
-	private:
+	protected:
 
 		char* m_pBuffer = nullptr;
 
@@ -58,13 +58,13 @@ namespace My_Library
 	public:
 
 		template <class T>
-		unsigned PushData(T& pResource, unsigned resource_size)
+		auto PushData(T& pResource, unsigned resource_size)
 		{
 			if (m_pBuffer == nullptr)
 				throw PACKET_EXCEPTION::PACKET_BUFFER_WAS_NULL;
 
 			if (GetDataUsableSize() < resource_size)
-				return false;
+				return static_cast<unsigned>(0);
 
 			memcpy(m_pData + m_packet_data_rear, (char*)&pResource, static_cast<size_t>(resource_size));
 
@@ -75,13 +75,13 @@ namespace My_Library
 		}
 
 		template <class T>
-		unsigned PopData(T& pDest, unsigned resource_size)
+		auto PopData(T& pDest, unsigned resource_size)
 		{
 			if (m_pBuffer == nullptr)
 				throw PACKET_EXCEPTION::PACKET_BUFFER_WAS_NULL;
 
 			if (GetDataUsedSize() < resource_size)
-				return false;
+				return static_cast<unsigned>(0);
 
 			memcpy((char*)&pDest, m_pData + m_packet_data_front, static_cast<size_t>(resource_size));
 
@@ -92,13 +92,13 @@ namespace My_Library
 		}
 
 		template <class T>
-		unsigned PushHeader(T& pResource, unsigned resource_size)
+		auto PushHeader(T& pResource, unsigned resource_size)
 		{
 			if (m_pBuffer == nullptr)
 				throw PACKET_EXCEPTION::PACKET_BUFFER_WAS_NULL;
 
 			if (GetHeaderUsableSize() < resource_size)
-				return false;
+				return static_cast<unsigned>(0);
 
 			memcpy(m_pHeader + m_packet_header_rear, (char*)&pResource, static_cast<size_t>(resource_size));
 
@@ -109,13 +109,13 @@ namespace My_Library
 		}
 
 		template <class T>
-		unsigned PopHeader(T& pDest, unsigned resource_size)
+		auto PopHeader(T& pDest, unsigned resource_size)
 		{
 			if (m_pBuffer == nullptr)
 				throw PACKET_EXCEPTION::PACKET_BUFFER_WAS_NULL;
 
 			if (GetHeaderUsedSize() < resource_size)
-				return false;
+				return static_cast<unsigned>(0);
 
 			memcpy((char*)&pDest, m_pHeader + m_packet_header_front, static_cast<size_t>(resource_size));
 
