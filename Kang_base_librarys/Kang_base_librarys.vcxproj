@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\CCpuUsage.h" />
     <ClInclude Include="src\CMemoyPool_TLS.h" />
     <ClInclude Include="src\CMemoryPool.h" />
     <ClInclude Include="src\CPacket.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="src\targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CCpuUsage.cpp" />
     <ClCompile Include="src\CMemoyPool_TLS.cpp" />
     <ClCompile Include="src\CMemoryPool.cpp" />
     <ClCompile Include="src\CPacket.cpp" />

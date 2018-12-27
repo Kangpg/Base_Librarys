@@ -21,8 +21,6 @@ namespace My_Library
 		// CChunk class define
 		class CChunk
 		{
-			friend class CMemoryPool_TLS<T>;
-
 		private:
 
 			enum en_chunk_size : unsigned
