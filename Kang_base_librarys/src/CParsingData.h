@@ -18,6 +18,14 @@ namespace My_Library
 
 	public:
 
+		static WCHAR g_ip[16];
+		static WORD g_port;
+
+		static WORD g_max_worker_threads;
+		static DWORD g_max_connection;
+
+		static bool g_is_nagle;
+
 		static BYTE g_packet_unfixed_code_01;
 		static BYTE g_packet_unfixed_code_02;
 	};

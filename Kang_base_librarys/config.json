@@ -1,3 +1,8 @@
 {
-  "packet_code":[50,132]
+  "server_ip": "127.0.0.1",
+  "server_port": 30000,
+  "server_max_worker_threads": 10,
+  "server_max_connection": 5000,
+  "server_nagle": true,
+  "packet_code": [ 50, 132 ]
 }
