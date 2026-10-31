@@ -1,0 +1,20 @@
+# Visual Studio local settings
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+
+# Generated build outputs
+**/bin/
+**/build/
+**/Debug/
+**/Release/
+**/x64/
+**/x86/
+*.obj
+*.pch
+*.pdb
+*.idb
+*.tlog
+*.lastbuildstate
